@@ -33,6 +33,10 @@ Independent Researcher | akai@fawstudio.com
 }
 ```
 
+## Abstract
+
+In the companion paper (Paper I), we established that the temporal asymmetry parameter tau = 1 - F quantifies the arrow of time through the Petz recovery fidelity bound F >= exp(-Sigma/2). Here we connect this framework to gravity. In weak gravitational fields, the coordinate speed of light satisfies c_eff/c = 1 + Phi/c^2 + O(Phi^2/c^4), which exponentiates to c_eff/c = exp(Phi/c^2) -- exact through post-Newtonian order [KNOWN]. We identify this with the Petz bound: c_eff/c = exp(-Sigma_grav/2) = F_bound, where Sigma_grav = 2|Phi|/c^2 [NEW SYNTHESIS]. Light slowing in a gravitational field is information loss; the gravitational refractive index is the inverse of the recovery fidelity. The exponential metric g_00 = -exp(-r_s/r) corresponds to the lower bound geometry -- the metric where recovery fidelity equals the JRSWW bound F = exp(-Sigma_grav/2). At a Schwarzschild event horizon, tau -> 1 (complete information loss), while in the exponential metric no horizon forms. We show that Pikovski's gravitational decoherence mechanism is naturally a Petz recovery problem [NEW], and that several results in black hole physics -- the Page curve, Hayden-Preskill protocol, entanglement wedge reconstruction -- are instances of the tau bound [NEW SYNTHESIS]. Three complementary physical frameworks (algebraic QFT, quantum optics, gravitational thermodynamics) yield the same identification, confirming its structural robustness.
+
 ## License
 
-MIT License — Sheng-Kai Huang, 2026
+CC-BY-4.0 -- Sheng-Kai Huang, 2026

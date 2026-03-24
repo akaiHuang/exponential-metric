@@ -21,6 +21,9 @@
 \newcommand{\ket}[1]{|#1\rangle}
 \newcommand{\bra}[1]{\langle#1|}
 \newcommand{\tauasym}{\tau}
+% Theorem environments
+\newtheorem{proposition}{Proposition}
+
 % Paper 2 macros
 \newcommand{\ceff}{c_{\mathrm{eff}}}
 \newcommand{\rs}{r_{\mathrm{s}}}
@@ -48,21 +51,23 @@ Here we connect this framework to gravity.
 In weak gravitational fields, the coordinate speed of light satisfies
 $\ceff/c = 1 + \Phi/c^2 + O(\Phi^2/c^4)$, which exponentiates to
 $\ceff/c = e^{\Phi/c^2}$---exact through post-Newtonian
-order~[KNOWN].
+order.
 We identify this with the Petz bound:
 $\ceff/c = e^{-\Sgrav/2} = \Fbound$, where
-$\Sgrav = 2|\Phi|/c^2$~[NEW SYNTHESIS].
+$\Sgrav = 2|\Phi|/c^2$.
 Light slowing in a gravitational field \emph{is} information loss;
 the gravitational refractive index is the inverse of the recovery
 fidelity.
-We hypothesize that the Petz bound is \emph{saturated}; at a
-Schwarzschild event horizon, $\tauasym \to 1$ (complete
-information loss), while in the exponential metric no horizon forms.
+The exponential metric $g_{00} = -e^{-\rs/r}$ corresponds to
+the \emph{lower bound geometry}---the metric where recovery fidelity
+equals the JRSWW bound $F = e^{-\Sgrav/2}$.  At a Schwarzschild event
+horizon, $\tauasym \to 1$ (complete information loss), while in the
+exponential metric no horizon forms.
 We show that Pikovski's gravitational decoherence mechanism is
-naturally a Petz recovery problem~[NEW], and that several results
+naturally a Petz recovery problem, and that several results
 in black hole physics---the Page curve, Hayden--Preskill protocol,
 entanglement wedge reconstruction---are instances of the
-$\tauasym$ bound~[NEW SYNTHESIS].
+$\tauasym$ bound.
 Three complementary physical frameworks (algebraic QFT, quantum
 optics, gravitational thermodynamics) yield the same identification,
 confirming its structural robustness.
@@ -159,11 +164,14 @@ we obtain:
   \label{eq:main_identification}
 \end{equation}
 The effective speed of light \emph{is} the Petz recovery fidelity
-bound---under the hypothesis that the bound is \emph{saturated}.
-Saturation means that no recovery procedure achieves fidelity
-better than $e^{-\Sgrav/2}$; whether nature selects saturation
-or a strict inequality $F > e^{-\Sgrav/2}$ is an empirical
-question~[HYPOTHESIS, not theorem].
+bound---where the JRSWW bound defines the geometry.
+This identification means the exponential metric is the
+\emph{lower bound geometry}: by Theorem~1
+in the Supplemental Material, exact saturation is impossible
+for $\Sgrav > 0$, so the actual recovery fidelity strictly
+exceeds $e^{-\Sgrav/2}$.  The exponential metric is the
+geometry where $F$ equals this lower bound, and any deviation
+from it is an empirical question~[IDENTIFICATION, not hypothesis].
 The gravitational refractive index
 $\nref = c/\ceff = e^{+\Sgrav/2} = 1/\Fbound$
 is the \emph{inverse} of the recovery fidelity.
@@ -238,6 +246,11 @@ The physical content is:
 The ``cost of retrodiction'' for a signal climbing through
 potential difference $|\Phi|$ is quantified by $\Sgrav$,
 and the maximum recoverable fidelity is $e^{-\Sgrav/2}$.
+
+We emphasize from the outset what this identification does \emph{not}
+provide: it does not predict dark matter abundances, dark energy
+values, or allow reconstruction of the metric from $\tauasym$ alone
+(see Sec.~\ref{sec:scope} for a complete accounting).
 
 \subsection{Three complementary interpretations}
 
@@ -350,13 +363,26 @@ Schwarzschild metrics diverge.
 The exponential metric has no event horizon and has been
 classified as a traversable wormhole~\cite{Boonserm2018}.
 Whether nature selects the Schwarzschild metric (standard GR)
-or the exponential metric (Petz saturation) is an empirical
+or the exponential metric (bound geometry) is an empirical
 question, with distinguishing predictions at the $\sim 5\%$
 level in black hole shadow size and quasinormal mode
 spectra~\cite{PaperII_exp}.
 This strong-field ambiguity does not affect the weak-field
 results of Secs.~\ref{sec:decoherence}--\ref{sec:black_holes},
 which depend only on $\Sgrav \ll 1$.
+
+\begin{proposition}[Characterization of the exponential metric]
+Among static, spherically symmetric metrics $g_{00} = -f(r)$,
+the exponential metric $f(r) = e^{-\rs/r}$ is the unique solution
+for which $\Sgrav \equiv -\ln(-g_{00}) = \rs/r$ is exactly linear
+in $\rs/r$.  The Schwarzschild metric gives
+$\Sgrav^{\mathrm{Schw}} = -\ln(1 - \rs/r) = \rs/r + \tfrac{1}{2}(\rs/r)^2 + \cdots$,
+which is linear only to leading order.
+\end{proposition}
+
+We do not derive this metric from an action principle; rather,
+we identify it as the metric that exactly linearizes the
+QRE--gravity correspondence~\eqref{eq:main_identification}.
 
 %=======================================================================
 \section{Gravitational Decoherence as Petz Recovery}
@@ -372,8 +398,9 @@ eigenstates at rate $\Delta E\, g\, \Delta h / (\hbar c^2)$,
 leading to decoherence when the internal degrees of freedom
 are traced out.
 
-We observe that this mechanism has the exact structure of a
-Petz recovery problem~[NEW].
+We observe that this mechanism has the \emph{formal structure} of a
+Petz recovery problem, though it is fundamentally distinct from the
+gravitational channel $\Sgrav$.
 
 \textit{The channel.}---Define the gravitational decoherence
 channel as the partial trace over internal degrees of freedom:
@@ -388,6 +415,11 @@ For a qubit internal clock, this produces a dephasing channel
 $\chan_p(\rho) = \tfrac{1+p}{2}\,\rho + \tfrac{1-p}{2}\,\sigma_z\rho\,\sigma_z$
 on the position degree of freedom, with coherence parameter
 $p = |\!\cos(\Delta E\,g\,\Delta h\,t\,/\,2\hbar c^2)|$.
+
+(Three key distinctions between the Pikovski channel and $\Sgrav$ are
+detailed in Supplement~S6: the Pikovski entropy is probe-dependent,
+has no finite supremum, and dephases in the position basis rather than
+the energy basis.)
 
 \textit{The Petz recovery.}---Reversing the decoherence requires
 reconstructing the internal-state correlations from the external
