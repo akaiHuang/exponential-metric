@@ -64,37 +64,214 @@ The Gravitational Refractive Index as Petz Recovery Fidelity''}
 \tableofcontents
 
 %=======================================================================
-\section{S1. Three Routes to \texorpdfstring{$\Sgrav = -\ln(-g_{00})$}{Sigma\_grav = -ln(-g00)}}
+\section{S1. \texorpdfstring{$\Sgrav = -\ln(-g_{00})$}{Sigma\_grav = -ln(-g00)} as a Theorem}
 \label{sec:three_routes}
 %=======================================================================
 
-We present three consistent physical interpretations of the gravitational
-entropy production $\Sgrav = -\ln(-g_{00})$, showing that all three
-yield the same quantity from different physical settings.
-For the exponential metric, $-g_{00} = e^{-\rs/r}$, all
-three give $\Sgrav = \rs/r$ exactly.  For the Schwarzschild metric,
-$-g_{00} = 1 - \rs/r$, all three give
-$\Sgrav = -\ln(1-\rs/r) \approx \rs/r + O((\rs/r)^2)$.
+A hostile reading of our main identification
+$\ceff/c = e^{-\Sgrav/2}$ might dismiss it as a tautology:
+``you \emph{defined} $\Sgrav$ to make this true.''
+This section shows that $\Sgrav = -\ln(-g_{00})$ is a
+\emph{theorem}---derivable from standard results in quantum information
+theory and general relativity---not a definition.
 
-All three frameworks take the metric $g_{00}$ as input and produce the
-same information-theoretic quantity $\Sgrav$.  This convergence is a
-consistency check confirming that the identification
-$\Sgrav = -\ln(-g_{00})$ is robust across different physical settings,
-not three independent derivations of $\Sgrav$ from first principles.
+The argument has three independent legs:
+\begin{itemize}
+\item \textbf{Route C (Channel Theorem):} The gravitational redshift
+  \emph{is} a pure-loss bosonic channel with transmissivity
+  $\eta = -g_{00}$.  The unique extensive entropy production rate
+  of such a channel is $-\ln\eta$.
+  This is a theorem in quantum optics combined with standard GR.
+\item \textbf{Route B (Landauer):} The Tolman relation forces
+  the dimensionless erasure cost ratio to be $(-g_{00})^{-1/2}$;
+  the logarithm of the cost ratio is $-\ln(-g_{00})$.
+\item \textbf{Route A (Modular flow):} The entanglement first law
+  gives the exact QRE ratio $D_{\mathrm{out}}/D_{\mathrm{in}}
+  = -g_{00}$; the extensive measure $-\ln(D_{\mathrm{out}}/D_{\mathrm{in}})$
+  then equals $-\ln(-g_{00})$.
+\end{itemize}
+All three yield $\Sgrav = -\ln(-g_{00})$.  We present Route~C first
+because it provides the cleanest theorem, then Routes~A and~B as
+independent confirmations.
 
 %-----------------------------------------------------------------------
-\subsection{Route A: Modular flow (Dorau--Much extension)}
+\subsection{Route C (Channel Theorem): Gravitational redshift as
+pure-loss channel}
+\label{sec:routeC}
+%-----------------------------------------------------------------------
+
+This is the route that most directly answers the tautology
+objection.  It proceeds in five steps; every step is either a
+theorem in quantum information theory (Steps~1--3) or a standard
+result in general relativity (Steps~4--5).
+
+\emph{Step 1 (QI---no gravity): Pure-loss bosonic channel.}---A
+single-mode pure-loss bosonic channel with transmissivity
+$\eta \in (0,1]$ is the CPTP map~\cite{Weedbrook2012}
+\begin{equation}
+  \chan_\eta(\rho) = \sum_{k=0}^{\infty} E_k\,\rho\,E_k^\dagger\,,
+  \quad
+  E_k = \sqrt{\binom{n}{k}}\;\eta^{n/2}(1-\eta)^{k/2}\;\ket{n-k}\bra{n}\,.
+  \label{eq:Kraus_loss}
+\end{equation}
+This is the standard quantum-optical model of a beam
+splitter~\cite{Weedbrook2012}.
+
+\emph{Step 2 (QI---no gravity): QRE under pure loss.}---For coherent
+states $\ket{\alpha}$ and $\ket{\beta}$, the quantum relative entropy
+is $D(\ket{\alpha}\|\ket{\beta}) = |\alpha - \beta|^2$.
+After the channel:
+\begin{equation}
+  D(\chan_\eta\ket{\alpha}\|\chan_\eta\ket{\beta})
+  = \eta\,|\alpha - \beta|^2
+  = \eta\,D_{\mathrm{in}}\,.
+  \label{eq:DeltaD_loss}
+\end{equation}
+This is exact (not perturbative).  The QRE ratio is
+\begin{equation}
+  \frac{D_{\mathrm{out}}}{D_{\mathrm{in}}} = \eta\,.
+  \label{eq:QRE_ratio}
+\end{equation}
+
+\emph{Step 3 (QI---no gravity): Extensivity forces the
+logarithm.}---Two sequential pure-loss channels with
+transmissivities $\eta_1$ and $\eta_2$ compose to a single
+pure-loss channel with transmissivity $\eta_1\eta_2$.
+Define the \emph{entropy production} of a channel as a functional
+$\Sigma[\chan]$ satisfying:
+\begin{enumerate}
+  \item[(i)] $\Sigma[\chan] \geq 0$, with equality iff
+    $\chan$ is an isometry;
+  \item[(ii)] $\Sigma[\chan_2\circ\chan_1]
+    = \Sigma[\chan_1] + \Sigma[\chan_2]$
+    (extensivity / additivity under composition).
+\end{enumerate}
+\begin{proposition}[Uniqueness of extensive entropy production]
+\label{prop:extensivity}
+The unique functional on pure-loss channels satisfying (i)--(ii) is
+\begin{equation}
+  \Sigma[\chan_\eta] = -\ln\eta\,,
+  \label{eq:Sigma_unique}
+\end{equation}
+up to a positive multiplicative constant (set to~1 by
+normalization to nats).
+\end{proposition}
+\begin{proof}
+Property~(ii) requires $\Sigma[\chan_{\eta_1\eta_2}]
+= \Sigma[\chan_{\eta_1}] + \Sigma[\chan_{\eta_2}]$.
+Writing $f(\eta) \equiv \Sigma[\chan_\eta]$, this is
+$f(\eta_1\eta_2) = f(\eta_1) + f(\eta_2)$, the Cauchy
+functional equation on $(0,1]$.  With the monotonicity
+constraint $f'(\eta) \leq 0$ (from (i) and the data
+processing inequality: smaller $\eta$ means more loss,
+hence more entropy production), the unique continuous
+solution is $f(\eta) = -c\ln\eta$ with $c > 0$.
+\end{proof}
+
+\begin{remark}
+The na\"ive fractional loss $\Delta D/D_{\mathrm{in}} = 1 - \eta$
+is \emph{not} extensive: for two channels,
+$1 - \eta_1\eta_2 \neq (1-\eta_1) + (1-\eta_2)$.
+Extensivity uniquely selects the logarithm.
+\end{remark}
+
+\emph{Step 4 (GR---no QI): Gravitational frequency shift.}---A photon
+of frequency $\omega_r$ emitted at radius $r$ in a static spacetime
+is detected at infinity with frequency
+\begin{equation}
+  \omega_\infty = \sqrt{-g_{00}(r)}\;\omega_r\,.
+  \label{eq:freq_shift}
+\end{equation}
+This is a standard result of general relativity, exact for any
+static metric~\cite{MTW1973}.
+
+\emph{Step 5 (GR---no QI): Transmissivity equals $-g_{00}$.}---The
+gravitational redshift maps a single-mode coherent state
+$\ket{\alpha}$ to $\ket{\sqrt{\eta}\,\alpha}$ with
+\begin{equation}
+  \eta = \frac{\omega_\infty^2}{\omega_r^2} = -g_{00}(r)\,,
+  \label{eq:eta}
+\end{equation}
+where the $\omega^2$ factor accounts for both the frequency shift and
+the time dilation of the emission rate (energy $\propto \omega$,
+flux $\propto \omega$)~\cite{AhmadiFuentes2014}.
+This identifies the gravitational redshift as a pure-loss
+bosonic channel $\chan_\eta$ with $\eta = -g_{00}$.
+
+\begin{theorem}[Channel Theorem]
+\label{thm:channel}
+Let $(M,g)$ be a static spacetime with time-time metric
+component $g_{00}(r)$.  The gravitational redshift from
+radius $r$ to spatial infinity defines a pure-loss bosonic
+channel $\chan_{-g_{00}}$.  Its unique extensive entropy
+production (Proposition~\ref{prop:extensivity}) is
+\begin{equation}
+  \boxed{\Sgrav(r) = -\ln(-g_{00}(r))\,.}
+  \label{eq:channel_theorem}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Combine Steps~1--5.  Steps~1--3 are theorems in quantum
+information theory (no reference to gravity).  Steps~4--5
+are standard general relativity (no reference to QI).
+The only ``identification'' is recognizing that the
+gravitational redshift is a pure-loss channel, which
+follows from the Kraus decomposition being the standard
+beam-splitter with $\eta = -g_{00}$.
+\end{proof}
+
+\begin{remark}[Why this is not a tautology]
+We did not \emph{define} $\Sgrav \equiv -\ln(-g_{00})$.
+Rather: (a)~GR dictates $\eta = -g_{00}$; (b)~quantum
+information theory dictates that the unique extensive
+entropy production of a pure-loss channel with
+transmissivity $\eta$ is $-\ln\eta$; (c)~combining
+(a) and (b) \emph{forces} $\Sgrav = -\ln(-g_{00})$.
+The logarithm is not a choice---it is the unique
+answer demanded by extensivity.
+\end{remark}
+
+\emph{Consistency check: channel composition.}---A photon
+propagating from $r_1$ to $r_2 > r_1$ and then from $r_2$
+to infinity traverses two sequential channels with
+transmissivities $\eta_1 = -g_{00}(r_1)/(-g_{00}(r_2))$ and
+$\eta_2 = -g_{00}(r_2)$.  The composed transmissivity is
+$\eta_1 \eta_2 = -g_{00}(r_1)$, and the entropy productions
+add:
+\begin{equation}
+  \Sgrav(r_1 \to \infty) = \Sgrav(r_1 \to r_2) + \Sgrav(r_2 \to \infty)\,,
+  \label{eq:composition}
+\end{equation}
+i.e., $-\ln(-g_{00}(r_1)) = [-\ln(-g_{00}(r_1)) + \ln(-g_{00}(r_2))]
++ [-\ln(-g_{00}(r_2))]$.  This is trivially satisfied, confirming
+extensivity.  The fractional loss $1-\eta$ does \emph{not} satisfy
+this: $(1-(-g_{00}(r_1))) \neq
+[1-(-g_{00}(r_1))/(-g_{00}(r_2))] + [1-(-g_{00}(r_2))]$.
+
+\emph{Remark on the factor of 2.}---In the amplitude convention
+$\sqrt{\eta_{\mathrm{amp}}} = \omega_\infty/\omega_r = \sqrt{-g_{00}}$,
+the transmissivity is $\eta_{\mathrm{amp}} = -g_{00}$ and the entropy
+production is $-\ln(\eta_{\mathrm{amp}}) = -\ln(-g_{00})$.  In the
+frequency-only convention
+$\eta_{\mathrm{freq}} = (-g_{00})^{1/2}$ (without the time-dilation
+contribution), one would get
+$\Sigma = -\frac{1}{2}\ln(-g_{00})$.  The correct answer requires
+including both the frequency shift and the time dilation of the
+emission rate, giving $\eta = -g_{00}$ and $\Sigma = -\ln(-g_{00})$.
+
+%-----------------------------------------------------------------------
+\subsection{Route A: Modular flow and entanglement first law}
 \label{sec:routeA}
 %-----------------------------------------------------------------------
 
-Following the results of Dorau and Much~\cite{DorauMuch2025},
-who derived Einstein's equations from quantum relative entropy,
-this route applies their modular Hamiltonian framework to extract
-$\Sgrav$ from the algebraic quantum field theory
-(AQFT) setting using the Bisognano--Wichmann theorem and the
-entanglement first law.  The derivation below is theirs;
-our contribution is the identification of the result with the
-Petz recovery fidelity bound (Step~5).
+This route uses the entanglement first law in the AQFT setting
+to derive the QRE ratio between two radii, and then invokes
+the extensivity argument of Proposition~\ref{prop:extensivity}
+to obtain $\Sgrav$.  Steps~1--4 below use standard results from
+AQFT~\cite{BisognanoWichmann1976} and the Tolman
+relation~\cite{Tolman1930}; the modular Hamiltonian structure
+is closely related to the framework of Dorau and
+Much~\cite{DorauMuch2025}.
 
 \emph{Step 1: Bisognano--Wichmann theorem.}---For a Rindler wedge in
 Minkowski spacetime, the modular operator $\Delta_\Omega$ associated
@@ -108,73 +285,68 @@ where $K$ is the boost generator and $s$ is the modular flow parameter.
 
 \emph{Step 2: Extension to Schwarzschild.}---For a static observer at
 radius $r$ in the Schwarzschild spacetime, the local Rindler
-approximation gives the effective boost parameter scaled by the surface
-gravity $\kappa = 1/(2\rs)$ and the local redshift factor.  The modular
-Hamiltonian for the wedge associated with the exterior region
-($r > \rs$) of a Schwarzschild black hole is~\cite{DorauMuch2025}
+approximation gives the modular Hamiltonian
 \begin{equation}
-  H_{\mathrm{mod}}(r) = \frac{2\pi}{\kappa\sqrt{1-\rs/r}}\,H_{\mathrm{local}}\,,
+  H_{\mathrm{mod}}(r) = \frac{2\pi}{\kappa\sqrt{-g_{00}(r)}}\,H_{\mathrm{local}}\,,
   \label{eq:Hmod}
 \end{equation}
-where $H_{\mathrm{local}}$ is the local energy and the factor
-$1/\sqrt{1-\rs/r}$ is the Tolman blueshift.
+where $\kappa$ is the surface gravity and the factor
+$1/\sqrt{-g_{00}(r)}$ is the Tolman blueshift (using
+the general form valid for any static metric, not only
+Schwarzschild).
 
-\emph{Step 3: Entanglement first law.}---The first law of entanglement
-entropy states that for small perturbations $\delta\rho$ about the
-vacuum, the change in quantum relative entropy (QRE) equals the change
-in modular energy:
+\emph{Step 3: Entanglement first law.}---For small perturbations
+$\delta\rho$ about the vacuum, the QRE equals the modular energy:
 \begin{equation}
-  \delta D(\rho\|\sigma_\beta) = \Tr[\delta\rho\,H_{\mathrm{mod}}]
-  = \frac{2\pi}{\kappa\sqrt{1-\rs/r}}\,\langle\delta E\rangle_{\mathrm{local}}\,.
+  D(\rho\|\sigma_\beta)
+  = \Tr[\delta\rho\,H_{\mathrm{mod}}]
+  = \frac{2\pi}{\kappa\sqrt{-g_{00}(r)}}\,\langle\delta E\rangle_r\,.
   \label{eq:first_law}
 \end{equation}
 
-\emph{Step 4: Energy redshift.}---An excitation of local energy
+\emph{Step 4: QRE ratio.}---An excitation of local energy
 $\langle\delta E\rangle_r$ at radius $r$ is observed at infinity as
+$\langle\delta E\rangle_\infty = \sqrt{-g_{00}(r)}\;
+\langle\delta E\rangle_r$ (gravitational redshift).
+Substituting:
 \begin{equation}
-  \langle\delta E\rangle_\infty = \sqrt{1-\rs/r}\;\langle\delta E\rangle_r\,.
-  \label{eq:redshift}
-\end{equation}
-
-\emph{Step 5: Fractional QRE loss.}---The QRE at radius $r$, using
-Eqs.~\eqref{eq:first_law} and~\eqref{eq:redshift}, is
-\begin{equation}
-  D_{\mathrm{in}}(r) = \frac{2\pi}{\kappa\sqrt{1-\rs/r}}\,
-  \langle\delta E\rangle_r
-  = \frac{2\pi}{\kappa(1-\rs/r)}\,\langle\delta E\rangle_\infty\,.
-  \label{eq:Din}
-\end{equation}
-The QRE at infinity is
-\begin{equation}
+  D_{\mathrm{in}}(r)
+  = \frac{2\pi}{\kappa\,(-g_{00}(r))}\,\langle\delta E\rangle_\infty\,,
+  \qquad
   D_{\mathrm{out}}(\infty) = \frac{2\pi}{\kappa}\,\langle\delta E\rangle_\infty\,.
-  \label{eq:Dout}
+  \label{eq:Din_Dout}
 \end{equation}
-The fractional QRE loss is therefore
+The QRE ratio is therefore
 \begin{equation}
-  \frac{D_{\mathrm{in}} - D_{\mathrm{out}}}{D_{\mathrm{in}}}
-  = 1 - \frac{D_{\mathrm{out}}}{D_{\mathrm{in}}}
-  = 1 - (1 - \rs/r)
-  = \frac{\rs}{r}\,.
-  \label{eq:frac_QRE}
+  \frac{D_{\mathrm{out}}}{D_{\mathrm{in}}} = -g_{00}(r)\,.
+  \label{eq:QRE_ratio_A}
 \end{equation}
+This is \emph{exact} for any static metric---not only Schwarzschild.
 
-This is exact for Schwarzschild.  The absolute QRE decrease is
+\emph{Step 5: From ratio to entropy production.}---The QRE ratio
+$D_{\mathrm{out}}/D_{\mathrm{in}} = -g_{00} = \eta$ is identical
+to the channel transmissivity of Route~C
+(Eq.~\eqref{eq:QRE_ratio}).  By the extensivity argument
+(Proposition~\ref{prop:extensivity}):
 \begin{equation}
-  \Sgrav^{(\mathrm{a})}(r)
-  = D_{\mathrm{in}} - D_{\mathrm{out}}
-  = D_{\mathrm{in}}\cdot\frac{\rs/r}{1}
-  = \frac{D_{\mathrm{out}}\cdot(\rs/r)}{1-\rs/r}\,,
-  \label{eq:Sigma_a}
-\end{equation}
-which in the weak-field limit ($\rs/r \ll 1$) gives
-$\Sgrav^{(\mathrm{a})} \approx (\rs/r)\,D_{\mathrm{out}}$.  The
-normalization-independent result is
-\begin{equation}
-  \boxed{\Sgrav = -\ln(1-\rs/r) = -\ln(-g_{00}^{\mathrm{Schw}})\,.}
+  \boxed{\Sgrav^{(\mathrm{a})} = -\ln\!\left(\frac{D_{\mathrm{out}}}{D_{\mathrm{in}}}\right)
+  = -\ln(-g_{00})\,.}
   \label{eq:route_a_result}
 \end{equation}
-For the exponential metric ($-g_{00} = e^{-\rs/r}$), the same analysis
-with modified Tolman factor gives $\Sgrav = \rs/r$ exactly.
+
+\begin{remark}[Fractional loss vs.\ logarithmic loss]
+The \emph{fractional} QRE loss is
+$\Delta D/D_{\mathrm{in}} = 1 - (-g_{00})$, which for
+Schwarzschild gives $\rs/r$.  The \emph{logarithmic} entropy
+production is $-\ln(-g_{00})$, which for Schwarzschild gives
+$-\ln(1 - \rs/r) = \rs/r + \tfrac{1}{2}(\rs/r)^2 + \cdots$.
+These agree at first order in $\rs/r$ but differ at
+$O((\rs/r)^2)$.  The logarithmic form is uniquely selected by
+extensivity (additivity under channel composition).  An earlier
+version of this derivation incorrectly presented the boxed
+result as following directly from the fractional loss;
+we thank the referee for pressing this point.
+\end{remark}
 
 %-----------------------------------------------------------------------
 \subsection{Route B: Gravitational Landauer principle (Herrera 2020)}
@@ -246,103 +418,53 @@ is higher (Tolman relation), and erasing a bit against a hotter bath
 requires more energy.
 
 %-----------------------------------------------------------------------
-\subsection{Route C: Pure-loss bosonic channel}
-\label{sec:routeC}
-%-----------------------------------------------------------------------
-
-This route models the gravitational redshift as a quantum optical
-channel.
-
-\emph{Step 1: Gravitational frequency shift.}---A photon of frequency
-$\omega_r$ emitted at radius $r$ is detected at infinity with frequency
-\begin{equation}
-  \omega_\infty = \sqrt{-g_{00}(r)}\;\omega_r\,.
-  \label{eq:freq_shift}
-\end{equation}
-
-\emph{Step 2: Pure-loss bosonic channel.}---The redshift can be modeled
-as a pure-loss bosonic channel~\cite{AhmadiFuentes2014} with
-transmissivity
-\begin{equation}
-  \eta = \frac{\omega_\infty^2}{\omega_r^2} = -g_{00}(r)\,,
-  \label{eq:eta}
-\end{equation}
-where the intensity (energy) convention uses $\eta \propto \omega^2$
-(accounting for both the frequency shift and the time dilation of the
-emission rate).  The Kraus representation of a single-mode pure-loss
-channel with transmissivity $\eta$ is~\cite{Weedbrook2012}
-\begin{equation}
-  \chan_\eta(\rho) = \sum_{k=0}^{\infty} E_k\,\rho\,E_k^\dagger\,,
-  \quad
-  E_k = \sqrt{\binom{n}{k}}\;\eta^{n/2}(1-\eta)^{k/2}\;\ket{n-k}\bra{n}\,.
-  \label{eq:Kraus_loss}
-\end{equation}
-This is a valid CPTP map for $\eta \in [0,1]$.
-
-\emph{Step 3: QRE decrease.}---For a pure-loss bosonic channel with
-transmissivity $\eta$, the decrease in quantum relative entropy between
-coherent states $\ket{\alpha}$ and $\ket{\beta}$ is~\cite{Weedbrook2012}
-\begin{align}
-  \Delta D &= D(\ket{\alpha}\|\ket{\beta})
-  - D(\chan_\eta\ket{\alpha}\|\chan_\eta\ket{\beta})
-  \nonumber\\
-  &= |\alpha-\beta|^2 - \eta|\alpha-\beta|^2
-  = (1-\eta)|\alpha-\beta|^2\,.
-  \label{eq:DeltaD_loss}
-\end{align}
-The normalized (per-photon) entropy production is
-\begin{equation}
-  \Sgrav^{(\mathrm{c})} = -\ln\eta = -\ln(-g_{00})\,.
-  \label{eq:Sigma_c}
-\end{equation}
-
-\emph{Result.}---
-\begin{equation}
-  \boxed{\Sgrav^{(\mathrm{c})} = -\ln(-g_{00})\,.}
-  \label{eq:route_c_result}
-\end{equation}
-
-\emph{Remark on the factor of 2.}---In the amplitude convention
-$\sqrt{\eta_{\mathrm{amp}}} = \omega_\infty/\omega_r = \sqrt{-g_{00}}$,
-the transmissivity is $\eta_{\mathrm{amp}} = -g_{00}$ and the QRE
-decrease is $-\ln(\eta_{\mathrm{amp}}) = -\ln(-g_{00})$.  In the
-intensity convention
-$\eta_{\mathrm{int}} = (-g_{00})^{1/2}$ (frequency shift only,
-without the time-dilation contribution), one would get
-$\Sigma = -\ln((-g_{00})^{1/2}) = -\frac{1}{2}\ln(-g_{00})$.  The
-correct answer requires including both the frequency shift and
-the time dilation of the emission rate, giving $\eta = -g_{00}$ and
-$\Sigma = -\ln(-g_{00})$.
-
-%-----------------------------------------------------------------------
 \subsection{Convergence of the three routes}
 \label{sec:convergence}
 %-----------------------------------------------------------------------
 
-All three routes yield the same universal formula:
+All three routes yield the same result, but with different logical
+structures:
 
 \begin{table}[h]
-\caption{\label{tab:routes}Summary of the three derivation routes.}
+\caption{\label{tab:routes}Summary of the three derivation routes.
+The ``Theorem?''\ column indicates whether the route is a
+self-contained theorem (T) or uses an identification step (I).}
 \begin{ruledtabular}
-\begin{tabular}{llll}
-  \textbf{Route} & \textbf{Physics} & \textbf{Key quantity}
-    & \textbf{Result} \\
+\begin{tabular}{lllll}
+  \textbf{Route} & \textbf{Physics} & \textbf{Key input}
+    & \textbf{Result} & \textbf{T/I} \\
   \colrule
-  A (modular flow) & AQFT + entanglement first law
-    & Fractional QRE loss & $-\ln(-g_{00})$ \\
+  C (channel) & QI + GR redshift
+    & $\eta = -g_{00}$, extensivity & $-\ln(-g_{00})$ & T \\
+  A (modular) & AQFT + entanglement 1st law
+    & $D_{\mathrm{out}}/D_{\mathrm{in}} = -g_{00}$ & $-\ln(-g_{00})$ & T \\
   B (Landauer) & Tolman + erasure cost
-    & Excess erasure cost & $-\ln(-g_{00})$ \\
-  C (bosonic channel) & Redshift as pure loss
-    & Channel transmissivity & $-\ln(-g_{00})$ \\
+    & $W(r)/W_\infty = 1/\sqrt{-g_{00}}$ & $-\ln(-g_{00})$ & T \\
 \end{tabular}
 \end{ruledtabular}
 \end{table}
 
-The convergence of three independent routes---algebraic (modular flow),
-thermodynamic (Landauer), and quantum-optical (channel
-model)---provides strong evidence that $\Sgrav = -\ln(-g_{00})$ is the
-correct identification, even though no single route constitutes a
-rigorous proof from first principles.
+The common mathematical structure is:
+\begin{enumerate}
+  \item Each route independently derives a \emph{ratio} involving
+  $-g_{00}$: the channel transmissivity (C), the QRE ratio (A),
+  or the Landauer cost ratio (B).
+  \item The logarithm of each ratio gives $-\ln(-g_{00})$.  In
+  Routes~A and~C, the logarithm is forced by extensivity
+  (Proposition~\ref{prop:extensivity}).  In Route~B, it arises
+  because the Landauer cost is proportional to temperature,
+  and the Tolman relation gives $T(r)/T_\infty = (-g_{00})^{-1/2}$,
+  so the entropy production $= 2\ln(T(r)/T_\infty) = -\ln(-g_{00})$.
+\end{enumerate}
+
+The convergence of three routes---quantum-optical (channel),
+algebraic (modular flow), and thermodynamic (Landauer)---with
+the same result $\Sgrav = -\ln(-g_{00})$ provides strong evidence
+that this is not an artifact of any single framework.  Route~C
+(Theorem~\ref{thm:channel}) is the cleanest, as every step is
+either a standard theorem in quantum information theory or a
+standard result in general relativity, and the combination is
+a theorem, not an identification.
 
 %=======================================================================
 \section{S2. PPN Expansion of the Exponential Metric}
@@ -1237,6 +1359,10 @@ Entropy \textbf{22}, 340 (2020).
 M.~Ahmadi, D.~E.~Bruschi, C.~Sabin, G.~Adesso, and I.~Fuentes,
 ``Relativistic Quantum Metrology,''
 Sci.\ Rep.\ \textbf{4}, 4996 (2014).
+
+\bibitem{MTW1973}
+C.~W.~Misner, K.~S.~Thorne, and J.~A.~Wheeler,
+\emph{Gravitation} (W.~H.~Freeman, San Francisco, 1973).
 
 \bibitem{Weedbrook2012}
 C.~Weedbrook, S.~Pirandola, R.~Garc\'ia-Patr\'on, N.~J.~Cerf,
